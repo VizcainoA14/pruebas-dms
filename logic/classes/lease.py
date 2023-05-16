@@ -16,7 +16,7 @@ class Lease(object):
                                           20),
                  pay_method: str = 'pay_method',
                  total_price: float = 0.1,
-                 items: list = [Document()]) -> object:
+                 items=None) -> object:
         """
         Constructor of the class
         :param id: the id of the Lease
@@ -37,7 +37,10 @@ class Lease(object):
         self.__finish_date = finish_date
         self.__pay_method = pay_method
         self.__total_price = total_price
-        self.__items = items
+        if items is None:
+            self.__items = []
+        else:
+            self.__items = items
 
     @property
     def id(self) -> int:

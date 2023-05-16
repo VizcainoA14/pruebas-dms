@@ -16,7 +16,7 @@ class Provider (Person):
                  phone: str = 'phone',
                  mail: str = 'mail',
                  address: Address = Address(),
-                 inventory: list = [Document()]) -> object:
+                 inventory=None) -> object:
         """
         Constructor of the class
         :param id: the id of the Provider
@@ -36,7 +36,10 @@ class Provider (Person):
         """
         super().__init__(id, name, last_name, phone, mail)
         self.__address = address
-        self.__inventory = inventory
+        if inventory is None:
+            self.__inventory = []
+        else:
+            self.__inventory = inventory
 
     @property
     def address(self) -> Address:
