@@ -45,7 +45,7 @@ class TestDelivery(unittest.TestCase):
     def test__str__(self):
         self.assertEqual(self.delivery.__str__(), {'id': 3, 'buyer': self.buyer.__str__(),
                                                    'date': date.today(), 'address': self.myaddress.__str__(), 'contact': self.contact.__str__(),
-                                                   'company': 'Documents'})
+                                                   'company': 'Company'})
 
 
 if __name__ == '__main__':

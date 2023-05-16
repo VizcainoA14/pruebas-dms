@@ -57,16 +57,16 @@ class TestAudioBook(unittest.TestCase):
 
     def test_setters(self):
         self.book.id = 2
-        self.book.author = "J.R.R. Tolkien"
-        self.book.title = "The Lord of the Rings"
-        self.book.price = 19.99
-        self.book.topic = "Fantasy"
-        self.book.language = "English"
-        self.book.pub_date = date(1954, 7, 29)
-        self.book.size = 200.0
-        self.book.doi = "10.1234/efgh"
-        self.book.duration = 7200
-        self.book.synopsis = "A hobbit goes on an adventure."
+        self.book.author = 'J.K. Rowling'
+        self.book.title = 'Harry Potter'
+        self.book.price = 9.99
+        self.book.topic = 'Fantasy'
+        self.book.language = 'English'
+        self.book.pub_date = date(1997, 6, 26)
+        self.book.size = 100.0
+        self.book.doi = '10.1234/abcd'
+        self.book.duration = 3600
+        self.book.synopsis = 'A boy discovers he is a wizard and attends a school of magic.'
 
     def test__str__(self):
         self.assertEqual(self.book.__str__(), {'id': 1, 'author': "J.K. Rowling", 'title': "Harry Potter",  'price': 9.99, 'topic': "Fantasy",
