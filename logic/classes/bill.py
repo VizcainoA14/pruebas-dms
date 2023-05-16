@@ -14,7 +14,7 @@ class Bill (object):
                  buyer: Person = Person(),
                  date: date = date.today(),
                  price: float = 0.1,
-                 items: list = [Document()]) -> object:
+                 items: list = [Document]) -> object:
         """
         Constructor of the class
         :param id: the id of the Bill
