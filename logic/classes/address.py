@@ -172,7 +172,7 @@ class Address (object):
         """
         self.__complement = complement
 
-    def __str__(self) -> str:
+    def __str__(self) -> dict:
         """
         String representation of the address
         :return: the string representation of the address

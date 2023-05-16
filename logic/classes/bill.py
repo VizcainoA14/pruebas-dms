@@ -129,7 +129,7 @@ class Bill (object):
         """
         self.__items = items
 
-    def __str__(self) -> str:
+    def __str__(self) -> dict:
         """
         String representation of the Bill
         :return: the string representation of the Bill
