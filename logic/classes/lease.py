@@ -153,7 +153,7 @@ class Lease(object):
         """
         self.__items = items
 
-    def __str__(self) -> str:
+    def __str__(self) -> dict:
         """
         String representation of the Lease
         :return: the string representation of the Lease
@@ -175,12 +175,12 @@ class Lease(object):
         :rtype: bool
         """
         if isinstance(other, Lease):
-            return self.__id == other.__id and \
-                self.__start_date == other.__start_date and \
-                self.__finish_date == other.__finish_date and \
-                self.__pay_method == other.__pay_method and \
-                self.__total_price == other.__total_price and \
-                self.__items == other.__items
+            return self.id == other.id and \
+                self.start_date == other.start_date and \
+                self.finish_date == other.finish_date and \
+                self.pay_method == other.pay_method and \
+                self.total_price == other.total_price and \
+                self.items == other.items
         return False
 
 

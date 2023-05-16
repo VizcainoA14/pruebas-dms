@@ -76,7 +76,7 @@ class Provider (Person):
         """
         self.__inventory = inventory
 
-    def __str__(self) -> str:
+    def __str__(self) -> dict:
         """
         Method that returns the string representation of the Provider
         :return: the string representation of the Provider
