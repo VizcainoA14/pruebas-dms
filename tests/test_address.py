@@ -36,6 +36,9 @@ class TestAddress(unittest.TestCase):
         self.assertEqual(self.myaddress.__str__(), {'country': "colombia", 'department': "bolivar", 'city': "cartagena",
                          'post_code': "1101", 'neighborhood': "Horizonte", 'street': "mzn3", 'complement': "house"})
 
+    def test__eq__(self):
+        self.assertEqual(self.myaddress.__eq__(self.myaddress), True)
+
 
 if __name__ == '__main__':
     unittest.main()
