@@ -14,7 +14,7 @@ class Bill (object):
                  buyer: Person = Person(),
                  date: date = date.today(),
                  price: float = 0.1,
-                 items: list = []) -> object:
+                 items=None) -> object:
         """
         Constructor of the class
         :param id: the id of the Bill
@@ -32,7 +32,10 @@ class Bill (object):
         self.__buyer = buyer
         self.__date = date
         self.__price = price
-        self.__items = items
+        if items is None:
+            self.__items = []
+        else:
+            self.__items = items
 
     @property
     def id(self) -> int:
