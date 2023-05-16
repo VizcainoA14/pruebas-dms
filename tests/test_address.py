@@ -14,15 +14,6 @@ class TestAddress(unittest.TestCase):
     def test_country(self):
         self.assertEqual(self.myaddress.country, "colombia")
 
-    def test_setters(self):
-        self.myaddress.country = "colombia"
-        self.myaddress.department = "bolivar"
-        self.myaddress.city = "cartagena"
-        self.myaddress.post_code = "1101"
-        self.myaddress.neighborhood = "Horizonte"
-        self.myaddress.street = "mzn3"
-        self.myaddress.complement = "house"
-
     def test_department(self):
         self.assertEqual(self.myaddress.department, "bolivar")
 
@@ -40,6 +31,15 @@ class TestAddress(unittest.TestCase):
 
     def test_complement(self):
         self.assertEqual(self.myaddress.complement, "house")
+
+    def test_setters(self):
+        self.myaddress.country = "colombia"
+        self.myaddress.department = "bolivar"
+        self.myaddress.city = "cartagena"
+        self.myaddress.post_code = "1101"
+        self.myaddress.neighborhood = "Horizonte"
+        self.myaddress.street = "mzn3"
+        self.myaddress.complement = "house"
 
     def test__str__(self):
         self.assertEqual(self.myaddress.__str__(), {'country': "colombia", 'department': "bolivar", 'city': "cartagena",

@@ -50,10 +50,27 @@ class TestEbook(unittest.TestCase):
         self.assertEqual(
             self.book.synopsis, " A boy discovers he is a wizard and attends a school of magic.")
 
+    def test_setters(self):
+        self.book.id = 2
+        self.book.author = "J.R.R. Tolkien"
+        self.book.title = "The Lord of the Rings"
+        self.book.price = 19.99
+        self.book.topic = "Fantasy"
+        self.book.language = "english"
+        self.book.pub_date = date(1954, 7, 29)
+        self.book.size = 5.0
+        self.book.doi = "9780618640157"
+        self.book.editor = "Houghton Mifflin Harcourt"
+        self.book.pages = 1178
+        self.book.synopsis = "A hobbit goes on an adventure to destroy a ring."
+
     def test__str__(self):
         self.assertEqual(self.book.__str__(), {'id': 123456, 'author': 'J.K. Rowling', 'title': 'Harry Potter', 'price': 10.99,
                                                'topic': 'Fantasy', 'language': 'english', 'pub_date': date(1997, 6, 26).strftime("%Y/%m/%d"), 'size': 2.5,
                                                'doi': '9780747532743', 'editor': 'Bloomsbury', 'pages': 223, 'synopsis': ' A boy discovers he is a wizard and attends a school of magic.'})
+
+    def test__eq__(self):
+        self.assertEqual(self.book.__eq__(self.book), True)
 
 
 if __name__ == '__main__':
