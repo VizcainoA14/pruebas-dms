@@ -28,15 +28,15 @@ def read_root():
     return {"200": "Welcome To Document Restful API"}
 
 
-@app.get("/api/document/select")
-async def root(table_name: str = ''):
+@app.get("/api/document/select/{table_name}")
+async def root(table_name: str = "all"):
     """
     Select all documents from a table
     """
     return bd_object.select_documents(table_name)
 
 
-@app.post("/api/document/ElectronicDoc/Add/Book")
+@app.post("/api/document/ElectronicDoc/Add/Book/{author}/{title}/{price}/{topic}/{language}/{pub_date}/{publisher}/{editor}/{pages}/{synopsis}/{presentation}")
 async def add_book(author: str = "author",
                    title: str = "title",
                    price: float = 100.0,
@@ -66,7 +66,7 @@ async def add_book(author: str = "author",
             presentation=presentation))
 
 
-@app.post("/api/document/ElectronicDoc/Add/Audiobook")
+@app.post("/api/document/ElectronicDoc/Add/Audiobook/{author}/{title}/{price}/{topic}/{language}/{pub_date}/{size}/{doi}/{duration}/{synopsis}")
 async def add_audiobook(author: str = "author",
                         title: str = "title",
                         price: float = 100.0,
@@ -94,7 +94,7 @@ async def add_audiobook(author: str = "author",
             synopsis=synopsis))
 
 
-@app.post("/api/document/ElectronicDoc/Add/Ebook")
+@app.post("/api/document/ElectronicDoc/Add/Ebook/{author}/{title}/{price}/{topic}/{language}/{pub_date}/{size}/{doi}/{editor}/{pages}/{synopsis}")
 async def add_ebook(author: str = "author",
                     title: str = "title",
                     price: float = 100.0,
@@ -124,7 +124,7 @@ async def add_ebook(author: str = "author",
             synopsis=synopsis))
 
 
-@app.post("/api/document/ElectronicDoc/Add/Invbook")
+@app.post("/api/document/ElectronicDoc/Add/Invbook/{author}/{title}/{price}/{topic}/{language}/{pub_date}/{size}/{doi}/{pages}/{abstract}")
 async def add_invbook(author: str = "author",
                       title: str = "title",
                       price: float = 100.0,
@@ -152,7 +152,7 @@ async def add_invbook(author: str = "author",
             abstract=abstract))
 
 
-@app.post("/api/document/ElectronicDoc/Add/Magazine")
+@app.post("/api/document/ElectronicDoc/Add/Magazine/{author}/{title}/{price}/{topic}/{language}/{pub_date}/{size}/{doi}/{edition}/{pages}")
 async def add_magazine(author: str = "author",
                        title: str = "title",
                        price: float = 100.0,
@@ -200,4 +200,4 @@ async def delete(id_document: int, table_name: str):
 
 
 if __name__ == "__main__":
-    uvicorn.run(app,host="0.0.0.0", port=8000)
+    uvicorn.run(app)

@@ -127,7 +127,7 @@ class DatabaseController():
         self.connection = sqlite3.connect(DATABASE)
         self.cursor = self.connection.cursor()
         try:
-            if table_name == "":
+            if table_name == "all":
                 self.cursor.execute('SELECT * FROM Books')
                 rows = self.cursor.fetchall() 
                 list_of_dict = self.rows_to_dict(rows)
