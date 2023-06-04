@@ -1,4 +1,5 @@
 import sqlite3
+import json
 
 from logic.classes.audiobook import AudioBook
 from logic.classes.book import Book
@@ -22,6 +23,9 @@ class DatabaseController():
         """
         self.connection = sqlite3.connect(DATABASE)
         self.cursor = self.connection.cursor()
+
+    
+
 
     def insert_document(self, document: Book or Ebook or Magazine or AudioBook or InvBook):
         """
@@ -122,29 +126,60 @@ class DatabaseController():
         """
         self.connection = sqlite3.connect(DATABASE)
         self.cursor = self.connection.cursor()
-        if table_name == "":
-            self.cursor.execute('SELECT * FROM Books')
-            rows = self.cursor.fetchall()
-            self.cursor.execute('SELECT * FROM Ebooks')
-            rows += self.cursor.fetchall()
-            self.cursor.execute('SELECT * FROM Audiobooks')
-            rows += self.cursor.fetchall()
-            self.cursor.execute('SELECT * FROM Magazines')
-            rows += self.cursor.fetchall()
-            self.cursor.execute('SELECT * FROM Investigation_books')
-            rows += self.cursor.fetchall()
-            print(rows)
-            self.connection.commit()
-            self.connection.close()
-            return rows
-        else:
-            self.cursor.execute(
-                '''SELECT * FROM {}'''.format(table_name))
-            rows = self.cursor.fetchall()
-            self.connection.commit()
-            self.connection.close()
-            return rows
+        try:
+            if table_name == "":
+                self.cursor.execute('SELECT * FROM Books')
+                rows = self.cursor.fetchall() 
+                list_of_dict = self.rows_to_dict(rows)
 
 
+                self.cursor.execute('SELECT * FROM Ebooks')
+                rows = self.cursor.fetchall()
+                list_of_dict.extend(self.rows_to_dict(rows))
+
+
+                self.cursor.execute('SELECT * FROM Audiobooks')
+                rows = self.cursor.fetchall()
+                list_of_dict.extend(self.rows_to_dict(rows))
+
+
+                self.cursor.execute('SELECT * FROM Magazines')
+                rows = self.cursor.fetchall()
+                list_of_dict.extend(self.rows_to_dict(rows))
+
+
+                self.cursor.execute('SELECT * FROM Investigation_books')
+                rows = self.cursor.fetchall()
+                list_of_dict.extend(self.rows_to_dict(rows))
+
+
+
+                self.connection.commit()
+                self.connection.close()
+                return list_of_dict
+            else:
+                self.cursor.execute(
+                    '''SELECT * FROM {}'''.format(table_name)) 
+                rows = self.cursor.fetchall()
+                list_of_dict = self.rows_to_dict(rows)
+                self.connection.commit()
+                self.connection.close()
+                return list_of_dict
+                
+        except sqlite3.Error as error:
+            print("Failed to read data from sqlite table", error)
+
+
+    def rows_to_dict(self, list_of_rows):
+        dictionary = []
+        for row in list_of_rows:
+            for i in range(len(list_of_rows)):
+                fields = [column[0] for column in self.cursor.description]
+            dictionary.append({key: value for key, value in zip(fields, row)})
+        return dictionary
+
+
+        
 if __name__ == "__main__":
-    db = DatabaseController()
+    db = DatabaseController()   
+    select = db.select_documents("Books")
